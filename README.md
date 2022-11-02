@@ -20,8 +20,30 @@
 .......
 
 #### 项目部署
-
-参考： [docker-compose部署项目到服务器](https://zhengqing.blog.csdn.net/article/details/103068220) 
+##### 1. 支持部署在docker
+ ``` 
+在项目根目录执行
+1. 构建镜像
+docker-compose build
+2. 运行服务
+docker-compose up -d
+ ``` 
+##### 2. 支持自行部署
+1. 前端部署，在code-generator-web跟目录下执行
+```
+1. 拉取node-modules
+npm install --save-dev lite-server 或者 cnpm install --save-dev lite-server  
+2. 构建生成dist,将生成的文件夹放到nginx上就可以访问
+npm run build:prod
+```
+2. 后端部署，在code-generator-api跟目录下执行
+```
+1. 将项目打包成jar文件，生成文件在项目文档target文件夹里面
+mvn install -Dmaven.test.skip=true
+2. 在安装了java环境的系统命令行中执行
+cd target
+java -jar ***.jar
+```
 
 ### 二、代码生成器介绍
 ###### 线上体验地址： [http://www.zhengqingya.com:8100/code-generator/dashboard](http://www.zhengqing520.com:8100/code-generator/dashboard)
